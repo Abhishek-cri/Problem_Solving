@@ -23,7 +23,7 @@ public:
         queue<Node *>q;
         Node *x;
         x=root;
-        vector<vector<Node *>> ans;
+        // vector<vector<Node *>> ans;
         if(!root)
         {
             return NULL;
@@ -59,7 +59,7 @@ public:
                 vec[i]->next=vec[i+1];
             }
             vec[i]->next=NULL;
-            ans.push_back(vec);
+            // ans.push_back(vec);
         }
         return root;
     }
