@@ -12,7 +12,7 @@
 class Solution {
 public:
     int sumRootToLeaf(TreeNode* root) {
-        
+    
         return solve(root,0);
     }
     
@@ -22,11 +22,15 @@ public:
         {
             return 0;
         }
+        
          sum=(2*sum)+root->val;
         if(!root->left && !root->right)
         {
-            return sum;
+           
+            return sum; 
         }
-        return solve(root->left, sum)+solve(root->right,sum);
+        
+        return solve(root->left,sum)+solve(root->right,sum);
+        
     }
 };
