@@ -8,7 +8,7 @@ class Solution
 {
     public:
     //Function to return max value that can be put in knapsack of capacity W.
-   
+    //vector<vector<int>>vec;
     int knapsack(vector<vector<int>>&t,int W, int wt[], int val[], int n) 
     { 
        // Your code here
@@ -36,8 +36,9 @@ class Solution
     { 
        // Your code here
     //   memset(t, -1, sizeof(t));
-      
-       vector<vector<int>>vec(n+1, vector<int>(W+1, -1));
+      vector<vector<int>>vec(n+1, vector<int>(W+1, -1));
+   
+    
        return knapsack(vec,W, wt, val, n);
        
        
