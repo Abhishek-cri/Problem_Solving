@@ -55,19 +55,22 @@ class Solution{
 	      vector<vector<bool>>t(n+1, vector<bool>(range+1));
 	      vector<int>vec;
 	    subsetsum(arr, range, t, n);
-	    for(int i=0;i<=range/2;i++)
+	     int mini= INT_MAX;
+	    for(int i=range/2;i>=0;i--)
 	    {
 	        if(t[n][i]==true)
 	        {
-	            vec.push_back(i);
-	        }
+	            mini=i;
+	            break;
+	        }  
+	        
 	    }
 	    
 
 	    
-	    int mini= INT_MAX;
-	    int a=vec.back();
-	    int ans=range-2*a;
+	   
+	   // int a=vec.back();
+	    int ans=range-2*mini;
 	   // for(int i=0;i<vec.size();i++)
 	   // {
 	   //     mini=min(mini, range-2*vec[i]);
