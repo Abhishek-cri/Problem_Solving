@@ -11,39 +11,34 @@
  */
 class Solution {
 public:
+    void height(TreeNode *root, int len, int &minlen)
+    {
+        if(!root)
+        {
+            return;
+        }
+        
+        if(!root->left && !root->right)
+        {
+           if(minlen>=len)
+           {
+               minlen=len;
+           }
+        }
+        height(root->left, len+1, minlen);
+        height(root->right, len+1, minlen);
+    }
+    
+    
     int minDepth(TreeNode* root) {
         
-        queue<TreeNode *>q;
-        int count=0;
         if(!root)
         {
             return 0;
         }
-        q.push(root);
-        while(!q.empty())
-        {
-            int n=q.size();
-            count+=1;
-            for(int i=0;i<n;i++)
-            {
-                root=q.front();
-                q.pop();
-                if(!root->left && !root->right)
-                {
-                   return count;    
-                }
-                if(root->left)
-                {
-                    q.push(root->left);
-                }
-                if(root->right)
-                {
-                    q.push(root->right);
-                }
-               
-            }
-        }
+        int minlen=INT_MAX;
+        height(root,1, minlen);
         
-        return 0;
+        return minlen;
     }
 };
