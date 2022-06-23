@@ -13,6 +13,7 @@ class Solution {
 public:
     
     unordered_map<int,pair<int, int>>m;
+    
     bool isCousins(TreeNode* root, int x, int y) 
     {
         if(!root)
@@ -33,6 +34,4 @@ public:
         preorder(root->left, root,depth+1 );
         preorder(root->right, root, depth+1);
     }
-    
-    
 };
