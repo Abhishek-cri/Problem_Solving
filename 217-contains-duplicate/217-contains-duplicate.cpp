@@ -9,6 +9,7 @@ public:
        if(nums[i]==nums[i+1])
        {
            return true;
+           break;
        }
      }
      
