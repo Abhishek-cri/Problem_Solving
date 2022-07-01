@@ -15,29 +15,20 @@ public:
             {
               i++;  
                 
-                if(i>=n)
-                {
-                    break;
-                }
+             
             }
             
-            if(nums2[j]<nums1[i])
+           else if(nums2[j]<nums1[i])
             {
                 j++;
-                if(j>=m)
-                {
-                    break;
-                }
+              
             }
-            if(nums1[i]==nums2[j])
+          else  if(nums1[i]==nums2[j])
             {
                 vec.push_back(nums1[i]);
                 i++;
                 j++;
-                if(i>=n || j>=m)
-                {
-                    break;
-                }
+             
             }
         }
         
