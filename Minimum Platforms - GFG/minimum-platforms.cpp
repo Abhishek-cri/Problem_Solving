@@ -26,7 +26,6 @@ class Solution{
     	    if(arr[i]<=dep[j])
     	    {
     	        platform+=1;
-    	
     	        i++;
     	    }
     	    else if(arr[i]>dep[j])
