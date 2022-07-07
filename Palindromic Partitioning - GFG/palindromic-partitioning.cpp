@@ -13,14 +13,7 @@ public:
     
     bool ispaling(string &str, int i, int j)
     {
-        if(i==j)
-          {
-              return 1;
-          }
-          if(i>j)
-            {
-                return 0;
-            }
+
         while(i<j)
         {
             if(str[i]!=str[j])
