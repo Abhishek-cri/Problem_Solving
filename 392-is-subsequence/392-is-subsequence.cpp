@@ -4,7 +4,7 @@ public:
         
         int m=s.size();
         int n=t.size();
-        vector<vector<int>>ans(m+1, vector<int>(n+1));
+        /*vector<vector<int>>ans(m+1, vector<int>(n+1));
         
         for(int i=0;i<m+1;i++)
         {
@@ -41,6 +41,29 @@ public:
         else
         {
             return false;
+        }*/
+        
+    // new solution
+        
+        int i=0;
+        
+        if(n==0 && m==0)
+        {
+            return true;
         }
+        
+        for(int j=0;j<n;j++)
+        {
+            if(s[i]==t[j])
+            {
+                i++;
+            }
+            if(i==m)
+            {
+                return true;
+            }
+           
+        }
+         return false;
     }
 };
