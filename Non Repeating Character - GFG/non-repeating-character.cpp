@@ -9,30 +9,26 @@ class Solution
 {
     public:
     //Function to find the first non-repeating character in a string.
-      const int CHAR=256;
     char nonrepeatingCharacter(string S)
     {
        //Your code here
-    
-       int count[CHAR]={0};
+       unordered_map<char,int>mp;
        
-       for(int i=0;i<S.size();i++)
+       
+       for(auto x:S)
        {
-           count[S[i]]++;
+           mp[x]++;
        }
        
-       for(int i=0;i<S.size();i++)
+       for(auto x:S)
        {
-           if(count[S[i]]==1)
+           if(mp[x]==1)
            {
-               return S[i];
+               return x;
            }
        }
        
        return '$';
-       
-      
-       
     }
 
 };
