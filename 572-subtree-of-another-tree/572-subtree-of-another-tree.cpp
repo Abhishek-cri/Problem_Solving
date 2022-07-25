@@ -55,7 +55,10 @@ public:
         {
             return true;
         }
-        return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+        bool a =isSubtree(root->left,subRoot); 
+        bool b= isSubtree(root->right,subRoot);
+        
+        return a||b;
         
      
        
