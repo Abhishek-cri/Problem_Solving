@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int solve(int n,vector<int>&vec)
+    int solve(int n, vector<int>&vec)
     {
         if(n<=3)
         {
@@ -13,17 +13,15 @@ public:
             return vec[n];
         }
         
-        return vec[n]=solve(n-1,vec)+solve(n-2,vec);
+        return vec[n]=solve(n-1,vec) + solve(n-2,vec);
         
         
     }
     
-    
     int climbStairs(int n) {
         
-        vector<int>vec(n+1,-1);
-        
-        return solve(n,vec);
+        vector<int>t(n+1,-1);
+       return solve(n,t);
         
     }
 };
