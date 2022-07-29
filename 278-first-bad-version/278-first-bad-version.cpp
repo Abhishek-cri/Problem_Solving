@@ -9,20 +9,20 @@ public:
         int low=1;
         int high=n;
         int mid;
-        while(low<high)
+        
+        while(low<=high)
         {
             mid=low+(high-low)/2;
+            
             if(isBadVersion(mid))
             {
-               high=mid;   
+                high=mid-1;
             }
             else
             {
                 low=mid+1;
             }
         }
-        
         return low;
-        
     }
 };
