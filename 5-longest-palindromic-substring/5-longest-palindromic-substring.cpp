@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+         int n=s.size();
+        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+       
+       string ans="";
+        int maxlength=0;
+      for(int diff=0;diff<n;diff++)
+      {
+        for(int i=0,j=i+diff;j<n;i++,j++)
+        {
+            if(diff==0)
+            {
+                dp[i][j]=1;
+            }
+            else if(diff==1 && s[i]==s[j])
+            {
+                dp[i][j]=dp[i][j-1]+1;
+            }
+            else if(diff>1 && dp[i+1][j-1] && s[i]==s[j])
+            {
+                dp[i][j]=dp[i+1][j-1]+2;
+            }
+            
+            if(dp[i][j]!=0)
+            {
+                if(j-i+1>maxlength)// length of palindromic string
+                {
+                    maxlength=j-i+1;
+                    ans=s.substr(i,maxlength);
+                }
+            }
+        }
+          
+      }
+        
+        return ans;
+    }
+    
+};
