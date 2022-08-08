@@ -16,9 +16,9 @@ public:
         
         for(int i=0;i<value.length();i++)
         {
-            output.push_back(value[i]);
+             output.push_back(value[i]);
              solve(digits,ans,output,mapping,index+1);
-            output.pop_back();
+             output.pop_back();
            
         }
         
