@@ -1,99 +1,59 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int V) {
+    
+    
+    int coinChange(vector<int>& coins, int amount) {
         
-      { 
-	    // Your code goes here
-          int M=coins.size();
-	    int k=INT_MAX;
-	 vector<vector<int>>t(M+1,vector<int>(V+1));
-	 for(int i=0;i<M+1;i++)
-	 {
-	     for(int j=0;j<V+1;j++)
-	     {
-	         if(i==0)
-	         {
-	             t[i][j]=k-1;
-	         }
-	         if(j==0)
-	         {
-	             t[i][j]=0;
-	         }
-	     }
-	 }
-	 
-	 for(int j=1;j<=V;j++)
-	 {
-	     if(j%coins[0]==0)
-	     {
-	         t[1][j]=j/coins[0];
-	     }
-	     else
-	     {
-	         t[1][j]=k-1;
-	     }
-	 }
-	 
-	 for(int i=2;i<=M;i++)
-	 {
-	     for(int j=1;j<=V;j++)
-	     {
-	         if(coins[i-1]<=j)
-	         {
-	             t[i][j]=min(1 + t[i][j-coins[i-1]], t[i-1][j]);
-	         }
-	         else
-	         {
-	             t[i][j]=t[i-1][j];
-	         }
-	     }
-	 }
-	 
-	 if(t[M][V]==k-1)
-	 {
-	     return -1;
-	 }
-	 return t[M][V];   
-	} 
-    }    
-	  
+        int n=coins.size();
+        vector<vector<int>>dp(n+1,vector<int>(amount+1));
+        int x=INT_MAX-1;    
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=amount;j++)
+            {
+                if(i==0)
+                {
+                  dp[i][j]=x;
+                }
+                if(j==0)
+                {
+                    dp[i][j]=0;
+                }
+            }
+        }  
+            
+            for(int j=1;j<=amount;j++)
+            {
+                if(j%coins[0]==0)
+                {
+                    dp[1][j]=j/coins[0];
+                }
+                else
+                {
+                    dp[1][j]=x;
+                }
+            }
+            
+            
+            for(int i=2;i<=n;i++)
+            {
+                for(int j=1;j<=amount;j++)
+                {
+                    if(coins[i-1]<=j)
+                    {
+                        dp[i][j]=min(1+dp[i][j-coins[i-1]], dp[i-1][j]);
+                    }
+                    else
+                    {
+                        dp[i][j]=dp[i-1][j];
+                    }
+                }
+            }
+            
+            if(dp[n][amount]==x)
+            {
+                return -1;
+            }
+            return dp[n][amount];
+    }
 };
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
