@@ -1,59 +1,45 @@
 class Solution {
 public:
-    
+    int t[10010];
+    int solve(vector<int>coins,int amount)
+    {
+        if(amount==0)
+        {
+            return 0;
+        }
+        
+        if(t[amount]!=-1)
+        {
+            return t[amount];
+        }   
+        
+        
+        int ans=INT_MAX;
+        for(int coin : coins)
+        {
+            if(amount-coin>=0)
+               ans=min(ans+0LL, solve(coins,amount-coin)+1LL);
+        }
+        
+        return  t[amount]=ans;
+            
+    }
     
     int coinChange(vector<int>& coins, int amount) {
         
-        int n=coins.size();
-        vector<vector<int>>dp(n+1,vector<int>(amount+1));
-        int x=INT_MAX-1;    
-        for(int i=0;i<=n;i++)
-        {
-            for(int j=0;j<=amount;j++)
-            {
-                if(i==0)
-                {
-                  dp[i][j]=x;
-                }
-                if(j==0)
-                {
-                    dp[i][j]=0;
-                }
-            }
-        }  
-            
-            for(int j=1;j<=amount;j++)
-            {
-                if(j%coins[0]==0)
-                {
-                    dp[1][j]=j/coins[0];
-                }
-                else
-                {
-                    dp[1][j]=x;
-                }
-            }
-            
-            
-            for(int i=2;i<=n;i++)
-            {
-                for(int j=1;j<=amount;j++)
-                {
-                    if(coins[i-1]<=j)
-                    {
-                        dp[i][j]=min(1+dp[i][j-coins[i-1]], dp[i-1][j]);
-                    }
-                    else
-                    {
-                        dp[i][j]=dp[i-1][j];
-                    }
-                }
-            }
-            
-            if(dp[n][amount]==x)
-            {
-                return -1;
-            }
-            return dp[n][amount];
+    
+      memset(t,-1,sizeof(t));
+        
+        int ans=solve(coins,amount);
+        
+       if(ans==INT_MAX)
+       {
+           return -1;
+       }
+       else
+       {
+           return ans;
+       }   
+        
     }
 };
