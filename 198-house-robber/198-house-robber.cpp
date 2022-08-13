@@ -1,36 +1,33 @@
 class Solution {
 public:
     
-    int solve(vector<int>nums, int n,vector<int>&dp)
+    int solve(vector<int>& nums, int n , vector<int>&t)
     {
-        if(n==0)
-        {
-            return dp[n]=nums[n];
-        }
-        if(n<0)
+        int sum1=0;
+        int sum2=0;
+        if(n<=0)
         {
             return 0;
         }
         
-        if(dp[n]!=-1)
+        if(t[n]!=-1)
         {
-            return dp[n];
+            return t[n];
         }
         
-        int pick=nums[n]+solve(nums,n-2,dp);
-        int not_pick=0+solve(nums,n-1,dp);
+        // include
+        sum1+=nums[n-1]+solve(nums,n-2,t);
+         sum2+=0+solve(nums,n-1,t);
         
-        return dp[n]=max(pick,not_pick);
+        return t[n]=max(sum1,sum2);
         
     }
     
-    
     int rob(vector<int>& nums) {
         
-       int n=nums.size();
-        
-        vector<int>dp(n,-1);
-        return solve(nums,n-1,dp);
+        int n=nums.size();
+        vector<int>t(n+1,-1);
+       return solve(nums,n,t);
         
     }
 };
