@@ -1,45 +1,35 @@
 class Solution {
 public:
-    int t[10010];
-    int solve(vector<int>coins,int amount)
+    
+    int solve(vector<int>& coins,vector<int>&t, int amount)
     {
-        if(amount==0)
-        {
-            return 0;
-        }
+        if(amount==0) return 0;
         
         if(t[amount]!=-1)
         {
             return t[amount];
-        }   
-        
-        
-        int ans=INT_MAX;
-        for(int coin : coins)
-        {
-            if(amount-coin>=0)
-               ans=min(ans+0LL, solve(coins,amount-coin)+1LL);
         }
         
-        return  t[amount]=ans;
-            
+        int ans=INT_MAX-1;
+        for(int coin:coins)
+        {
+            if(amount-coin>=0)
+            {
+                ans=min(ans, 1+solve(coins,t,amount-coin));
+            }
+        }
+        
+        return t[amount]=ans;
+        
     }
     
     int coinChange(vector<int>& coins, int amount) {
         
-    
-      memset(t,-1,sizeof(t));
+        vector<int>t(amount+1,-1);
         
-        int ans=solve(coins,amount);
+        int ans=solve(coins,t,amount);
         
-       if(ans==INT_MAX)
-       {
-           return -1;
-       }
-       else
-       {
-           return ans;
-       }   
+        return ans==INT_MAX-1?-1 : ans;
         
     }
 };
