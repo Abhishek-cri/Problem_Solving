@@ -1,42 +1,42 @@
 class Solution {
 public:
+    
+    int solve(int amount, vector<int>&coins, int n,vector<vector<int>>&dp)
+    {
+       // if (amount == 0) return 1;
+        if(n==0)
+        {
+            return (amount%coins[0]==0);
+        }
+    
+        
+        if(dp[n][amount]!=-1)
+        {
+            return dp[n][amount];
+        }
+        // not take
+    
+        long nottake=solve(amount, coins,n-1,dp);
+        
+        // take
+        long take=0;
+        if(coins[n]<=amount)
+           take=solve(amount-coins[n], coins,n,dp);
+        
+        return dp[n][amount]=take+nottake;
+        
+        
+    }
+    
+    
+    
     int change(int amount, vector<int>& coins) {
         
         int n=coins.size();
-        vector<vector<int>>dp(n+1,vector<int>(amount+1,-1));
+        vector<vector<int>>vec(n+1,vector<int>(amount+1,-1));
+       
+        return solve(amount,coins,n-1,vec);
         
-        for(int i=0;i<n+1;i++)
-        {
-            for(int j=0;j<amount+1;j++)
-            {
-                if(i==0)
-                {
-                    dp[i][j]=0;
-                }
-                if(j==0)
-                {
-                    dp[i][j]=1;
-                }
-            }
-        }
-        
-        
-        for(int i=1;i<n+1;i++)
-        {
-            for(int j=1;j<amount+1;j++)
-            {
-                if(coins[i-1]<=j)
-                {
-                    dp[i][j]=dp[i][j-coins[i-1]] + dp[i-1][j];
-                }
-                else
-                {
-                    dp[i][j]=dp[i-1][j];
-                }
-            }
-        }
-        
-        return dp[n][amount];
         
     }
 };
