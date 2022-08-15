@@ -2,31 +2,30 @@ class Solution {
 public:
     int maxProduct(vector<int>& nums) {
         
-        int current=1;
-        int ans=INT_MIN;
+        int current_p=1;
+        int maxi_p=INT_MIN;
         
         for(int i=0;i<nums.size();i++)
         {
-            current=nums[i]*current;
-            ans=max(ans,current);
-            if(current==0)
+            current_p*=nums[i];
+            maxi_p=max(current_p,maxi_p);
+            if(current_p==0)
             {
-                current=1;
+                current_p=1;
             }
-         
         }
-        current=1;
+        
+       current_p=1;
         for(int i=nums.size()-1;i>=0;i--)
         {
-            current=current*nums[i];
-            ans=max(ans,current);
-            if(current==0)
+            current_p*=nums[i];
+            maxi_p=max(current_p,maxi_p);
+            if(current_p==0)
             {
-                current=1;
+                current_p=1;
             }
         }
         
-        return ans;
-        
+        return maxi_p;
     }
 };
