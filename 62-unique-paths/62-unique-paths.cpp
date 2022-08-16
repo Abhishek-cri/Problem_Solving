@@ -1,37 +1,34 @@
 class Solution {
 public:
     
-    int solve(int i,int j, int m, int n, vector<vector<int>> &vec){
-        
-       if(i==0 && j==0)
-       {
-           return vec[0][0]=1;
-       }
-        
+    int solve(int m ,int n, int x, int y,vector<vector<int>>&dp)
+    {
     
-        if(i<0 || j<0 || i>=m || j>=n)
+        if(x>=m || y>=n)
         {
             return 0;
         }
         
-        if(vec[i][j]!=-1)
+        
+        if(dp[x][y]!=-1)
         {
-            return vec[i][j];
+            return dp[x][y];
         }
         
-           return vec[i][j]=solve(i-1,j,m,n, vec) + solve(i,j-1,m,n, vec);
-        
-           
-    }
+        if(x==m-1 && y==n-1)
+        {
+            return 1;
+        }
+        return dp[x][y]=solve(m,n,x+1,y,dp) + solve(m,n,x,y+1,dp);
     
+    }
     
     int uniquePaths(int m, int n) {
         
-        vector<vector<int>>vec(m,vector<int>(n,-1));
-        
-         solve(m-1,n-1, m,n, vec);
-        
-        return vec[m-1][n-1];
+        int x=0;
+        int y=0;
+        vector<vector<int>>dp(m+1, vector<int>(n+1,-1));
+       return solve(m,n,x,y, dp);
         
     }
 };
