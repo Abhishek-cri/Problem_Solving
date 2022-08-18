@@ -12,31 +12,29 @@
 class Solution {
 public:
     
-    
-    
-    void solve(TreeNode *root,vector<int>&ans)
+    void solve(TreeNode *root, vector<int>&vec)
     {
         if(root)
         {
-            solve(root->left,ans);
-            ans.push_back(root->val);
-            solve(root->right,ans);
+            solve(root->left,vec);
+            vec.push_back(root->val);
+            solve(root->right,vec);
         }
     }
     
     bool isValidBST(TreeNode* root) {
+      
+        vector<int>vec;
         
-        vector<int>ans;
-        solve(root,ans);
+        solve(root, vec);
         
-            for(int i=1;i<ans.size();i++)
+        for(int i=1;i<vec.size();i++)
+        {
+            if(vec[i-1]>=vec[i])
             {
-                if(ans[i]<=ans[i-1])
-                {
-                    return false;
-                }
+                return false;
             }
-        
+        }
         return true;
     }
 };
