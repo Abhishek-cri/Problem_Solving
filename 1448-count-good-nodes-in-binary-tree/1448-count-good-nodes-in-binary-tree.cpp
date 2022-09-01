@@ -12,24 +12,25 @@
 class Solution {
 public:
     
-    int good(TreeNode *root, int maxi,int res)
+    int solve(TreeNode * root,int maxi, int res)
     {
-        if(!root)
+       if(!root) return 0;
+        
+        if(root->val>=maxi)
         {
-            return res;
+            maxi=max(maxi,root->val);
+            res+=1;
         }
         
-        if(root->val >= maxi)
-        {
-            maxi=root->val;
-            res++; 
-        }
+        return res+ solve(root->left, maxi,0) + solve(root->right,maxi,0);
         
-        return res + good(root->left,maxi,0) + good(root->right,maxi,0);
     }
     
     int goodNodes(TreeNode* root) {
         
-       return  good(root,root->val,0);
+        int maxi=root->val;
+        int res=0;
+        return solve(root,maxi,res );
+        
     }
 };
