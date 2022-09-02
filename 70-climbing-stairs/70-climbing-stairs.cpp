@@ -1,11 +1,11 @@
 class Solution {
 public:
     
-    int solve(int n, vector<int>&vec)
+    int solve(vector<int>&vec, int n)
     {
         if(n<=3)
         {
-            return vec[n]=n;
+            return n;
         }
         
         if(vec[n]!=-1)
@@ -13,15 +13,13 @@ public:
             return vec[n];
         }
         
-        return vec[n]=solve(n-1,vec) + solve(n-2,vec);
-        
-        
+        return vec[n]=(solve(vec,n-1) + solve(vec,n-2));
     }
     
+    
+    
     int climbStairs(int n) {
-        
-        vector<int>t(n+1,-1);
-       return solve(n,t);
-        
+        vector<int>vec(n+1,-1);
+        return solve(vec, n);
     }
 };
