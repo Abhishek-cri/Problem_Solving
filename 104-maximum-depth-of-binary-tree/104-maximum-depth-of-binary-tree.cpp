@@ -11,25 +11,24 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
-      
-        // int left,right;
+    
+    int solve(TreeNode *root)
+    {
+        int left, right;
+        
         if(root)
         {
-            int left=maxDepth(root->left);
-            int  right=maxDepth(root->right);
-            if(left>right)
-            {
-                return left+1;
-            }
-            else
-            {
-                return right+1;
-            }
-
+            left=solve(root->left);
+            right=solve(root->right);
+            
+            return left>right?left+1:right+1;
         }
-        
         return 0;
+    }
+    
+    int maxDepth(TreeNode* root) {
+        if(!root) return 0;
+        return solve(root);
         
     }
 };
