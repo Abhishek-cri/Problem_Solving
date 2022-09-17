@@ -12,50 +12,53 @@
 class Solution {
 public:
     
-    
-    int height(TreeNode *root)
+    int left_solve(TreeNode *root)
     {
-    
+        int left, right;
+        
         if(root)
         {
-           int left=height(root->left);
-            int right=height(root->right);
+            left=left_solve(root->left);
+            right=left_solve(root->right);
             
-            if(left>right)
-            {
-                return left+1;
-            }
-            else
-            {
-                return right+1;
-            }
+            return 1+max(left,right);
+        }
+        return 0;
+    }
+       int right_solve(TreeNode *root)
+    {
+        int left, right;
+        
+        if(root)
+        {
+            left=right_solve(root->left);
+            right=right_solve(root->right);
+            
+            return 1+max(left,right);
         }
         return 0;
     }
     
     
     bool isBalanced(TreeNode* root) {
+        int x,y;
+        if(!root) return true;
+       if(root)
+       {     
+        x=left_solve(root->left);
+        y=right_solve(root->right);
         
-        if(!root)
-        {
-            return true;
-        }
-        
-        int x= height(root->left);
-        int y=height(root->right);
-        
-        if(abs(x-y)>1)
+        if(abs(x-y)>=2)
         {
             return false;
         }
         
-        int a=isBalanced(root->left);
-        int b=isBalanced(root->right);
-        if(!a || !b)
-        {
-            return false;
-        }
+        bool x=isBalanced(root->left);
+        bool y= isBalanced(root->right);
+        if(!x || !y) return false;
+           
+       }
         
-        return true;
+       return true; 
     }
 };
