@@ -21,9 +21,9 @@ public:
      
         
        
-        bool a=isSame(p->left,q->right);
-        bool b= isSame(p->right, q->left);
-        return(p->val==q->val && a &&b);
+
+        
+        return(p->val==q->val && isSame(p->left,q->right) && isSame(p->right, q->left));
         
     }
     
