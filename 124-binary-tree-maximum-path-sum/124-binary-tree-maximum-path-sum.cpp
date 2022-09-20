@@ -17,21 +17,21 @@ public:
         if(root==nullptr) return 0;
         
         int left=solve(root->left,res);
-        int right=solve(root->right, res);
+        int right=solve(root->right,res);
         
         int temp=max(max(left,right)+root->val, root->val);
-        int ans=max(temp, left+right+root->val);
+        int ans=max(temp, root->val+left+right);
         
-        res=max(res,ans);
+        res=max(ans, res);
         
         return temp;
+        
+        
     }
     
     int maxPathSum(TreeNode* root) {
-        
         int res=INT_MIN;
         solve(root,res);
-        
         return res;
         
     }
