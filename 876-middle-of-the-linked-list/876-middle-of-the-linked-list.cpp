@@ -13,16 +13,22 @@ public:
     ListNode* middleNode(ListNode* head) {
         
         int count=0;
-        
+        int mid=0;
         ListNode *p=head;
+        
         while(p!=NULL)
         {
             count+=1;
             p=p->next;
         }
         
-        int mid=count/2;
+       
+            mid=count/2;
+        
+        
+        
         int a=0;
+        
         p=head;
         
         while(a!=mid)
@@ -31,7 +37,9 @@ public:
             p=p->next;
         }
         
+       
         return p;
+        
         
     }
 };
