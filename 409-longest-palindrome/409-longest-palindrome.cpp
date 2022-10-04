@@ -1,18 +1,19 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        unordered_map<char, int>count;
-         
-        for(auto x:s)
+        
+        unordered_map<char,int>mp;
+        
+        for(auto it:s)
         {
-            count[x]++;
+            mp[it]++;
         }
         
         int res=0;
         bool is_odd=false;
-        for(auto &x:count)
+        for(auto x:mp)
         {
-            if(x.second % 2==0)
+            if(x.second%2==0)
             {
                 res+=x.second;
             }
