@@ -1,1 +1,1 @@
-​
+// simple approach is to traverse the matrix and every time you got 1 then count++ and do dfs or bfs trversal of all 1
