@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 #define MAX_HEIGHT 100000
@@ -90,47 +90,49 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 //Function to return a list containing the bottom view of the given tree.
 
 class Solution {
   public:
     vector <int> bottomView(Node *root) {
-      int hd=0;
-      vector<int>vec;   
-        if(!root){return vec;}
-      queue<pair<Node *, int>>q;
-      
-      map<int, int>hm;
-     
-      q.push({root,hd });
-      
-      while(!q.empty())
-      {
-          Node *temp=q.front().first;
-           hd=q.front().second;
-          q.pop();
-          hm[hd]=temp->data;
-          
-          if(temp->left)
-          {
-              q.push({temp->left,hd-1});
-          }
-          if(temp->right)
-          {
-              q.push({temp->right,hd+1});
-          }
-      }
-      
-      for(auto it:hm)
-      {
-          vec.push_back(it.second);
-      }
-    return vec;
+        // Your Code Here
+        
+        map<int, int>mp;
+        int hd=0;
+        queue<pair<Node *, int>>q;
+        q.push({root,hd});
+        vector<int>ans;
+        while(!q.empty())
+        {
+            int n=q.size();
+            for(int i=0;i<n;i++)
+            {
+                root=q.front().first;
+                hd=q.front().second;
+                q.pop();
+                mp[hd]=root->data;
+                
+                if(root->left)
+                {
+                    q.push({root->left,hd-1});
+                }
+                if(root->right)
+                {
+                    q.push({root->right,hd+1});
+                }
+            }
+        }
+        
+        for(auto it:mp)
+        {
+            ans.push_back(it.second);
+        }
+        return ans;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int t;
@@ -151,4 +153,5 @@ int main() {
 }
 
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
