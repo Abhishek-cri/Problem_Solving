@@ -1,68 +1,69 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution{
 
 	public:
+	
+	int solve(int coins[],int M, int V, vector<vector<int>>&dp)
+	{
+	    if(M==0)
+	    {
+	        return INT_MAX-1;
+	    }
+	    if(V==0)
+	    {
+	        return 0;
+	    }
+	    if(M==1)
+	    {
+	        if(V%coins[M-1]==0)
+	        {
+	            return V/coins[M-1];
+	        }
+	        else
+	        {
+	            return INT_MAX-1;
+	        }
+	    }
+	    
+	   if(dp[M][V]!=-1)
+	   {
+	       return dp[M][V];
+	   }
+	    
+	    int take=INT_MAX-1;
+	    if(coins[M-1]<=V)
+	    {
+	        take=1+solve(coins, M,V-coins[M-1], dp);
+	    }
+	    int nottake=solve(coins, M-1,V, dp);
+	    
+	    return dp[M][V]=min(take, nottake);
+	    
+	    
+	}
+	
 	int minCoins(int coins[], int M, int V) 
 	{ 
 	    // Your code goes here
-	    int k=INT_MAX;
-	 vector<vector<int>>t(M+1,vector<int>(V+1));
-	 for(int i=0;i<M+1;i++)
-	 {
-	     for(int j=0;j<V+1;j++)
-	     {
-	         if(i==0)
-	         {
-	             t[i][j]=k-1;
-	         }
-	         if(j==0)
-	         {
-	             t[i][j]=0;
-	         }
-	     }
-	 }
-	 
-	 for(int j=1;j<=V;j++)
-	 {
-	     if(j%coins[0]==0)
-	     {
-	         t[1][j]=j/coins[0];
-	     }
-	     else
-	     {
-	         t[1][j]=k-1;
-	     }
-	 }
-	 
-	 for(int i=2;i<=M;i++)
-	 {
-	     for(int j=1;j<=V;j++)
-	     {
-	         if(coins[i-1]<=j)
-	         {
-	             t[i][j]=min(1 + t[i][j-coins[i-1]], t[i-1][j]);
-	         }
-	         else
-	         {
-	             t[i][j]=t[i-1][j];
-	         }
-	     }
-	 }
-	 
-	 if(t[M][V]==k-1)
+	    vector<vector<int>>dp(M+1,vector<int>(V+1,-1));
+	 if(solve(coins, M, V, dp)==INT_MAX-1)
 	 {
 	     return -1;
 	 }
-	 return t[M][V];   
+	 else
+	 {
+	     return solve(coins, M, V, dp);
+	 }
+	    
 	} 
 	  
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() 
 {
    
@@ -85,4 +86,5 @@ int main()
     }
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
