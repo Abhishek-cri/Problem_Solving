@@ -11,31 +11,16 @@
  */
 class Solution {
 public:
-
-  TreeNode *solve(TreeNode *root)
-  {
-      if(!root)
-      {
-          return NULL;
-      }
-
-
-swap(root->left, root->right);
-solve(root->left);
-solve(root->right);
-
-return  root;
-       
-       
-  }
     TreeNode* invertTree(TreeNode* root) {
-
-        if(!root)
-        {
-            return root;
-        }
-
-        return solve(root);
+        
+        if(!root)  return NULL;
+        
+        swap(root->left, root->right);
+        
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        return root;
         
     }
 };
