@@ -20,10 +20,7 @@ public:
                    temp+=s[i];
                     i++;
                 } 
-                vec2.push_back(temp);
-                
-           
-           
+                vec2.push_back(temp);  
         }
         
    
@@ -38,15 +35,7 @@ public:
         }
       
         
-        for(int i=0;i<pattern.size();i++)
-        {
-            cout<<pattern[i]<<" ";
-        }
-        cout<<endl;
-        for(int i=0;i<vec2.size();i++)
-        {
-            cout<<vec2[i]<<" ";
-        }
+      
         
         
         if(pattern.size()!=vec2.size())
