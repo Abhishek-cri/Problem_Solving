@@ -31,7 +31,32 @@ public:
         
         vector<int>vec;
         
-        solve(root, vec);
+        // solve(root, vec);
+        if(!root)
+        {
+            return vec;
+        }
+        stack<TreeNode *>st;
+        // st.push(root);
+        
+        while(root || !st.empty())
+        {
+            
+            if(root)
+            {
+                vec.push_back(root->val);
+                st.push(root);
+                root=root->left;
+            }
+            else
+            {
+                root=st.top();
+                st.pop();
+                root=root->right;
+            }
+            
+        }
+        
         
         return vec;
     }
